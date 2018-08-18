@@ -37,3 +37,11 @@ func (s *LuaState) GetGlobal(name string) {
 func (s *LuaState) ToString(i int) string {
 	return C.GoString(C.lua_tolstring(s.ls, C.int(i), nil))
 }
+
+func (s *LuaState) ToInteger(i int) int {
+	return int(C.lua_tointeger(s.ls, C.int(i)))
+}
+
+func (s *LuaState) SetTop(i int) {
+	C.lua_settop(s.ls, C.int(i))
+}

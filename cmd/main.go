@@ -18,7 +18,9 @@ func main() {
 	}
 	s := goluajit.NewState()
 	s.LoadFile(file)
-	fmt.Println(s.PCall(0, 0, 0))
+	s.PCall(0, 0, 0)
 	s.GetGlobal("address")
-	s.ToString(-1)
+	s.GetGlobal("port")
+	fmt.Printf("address: %s, port: %d\n", s.ToString(-2), s.ToInteger(-1))
+	s.SetTop(0)
 }
